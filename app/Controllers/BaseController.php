@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Latte;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -35,7 +36,8 @@ abstract class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = [];
+    protected $helpers = ['html', 'minifier'];
+    protected Latte $latte;
 
     /**
      * Constructor.
@@ -47,6 +49,7 @@ abstract class BaseController extends Controller
 
         // Preload any models, libraries, etc, here.
 
-        // E.g.: $this->session = \Config\Services::session();
+//         E.g.: $this->session = \Config\Services::session();
+        $this->latte = new Latte();
     }
 }

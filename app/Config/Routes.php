@@ -3,6 +3,8 @@
 namespace Config;
 
 // Create a new instance of our RouteCollection class.
+use App\Controllers\Backend\DashboardController;
+
 $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
@@ -36,6 +38,11 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+
+
+$routes->group('administrator', static function ($routes) {
+    $routes->get('/', [DashboardController::class, 'index']);
+});
 
 /*
  * --------------------------------------------------------------------
