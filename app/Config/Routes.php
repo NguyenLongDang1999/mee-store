@@ -41,7 +41,7 @@ $routes->get('/', 'Home::index');
 
 
 $routes->group('administrator', static function ($routes) {
-    $routes->get('/', [DashboardController::class, 'index']);
+    $routes->get('/', [DashboardController::class, 'index'], ['as' => 'admin.dashboard.index']);
 });
 
 /*

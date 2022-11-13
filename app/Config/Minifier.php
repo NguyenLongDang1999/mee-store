@@ -65,13 +65,13 @@ class Minifier extends \Michalsn\Minifier\Config\Minifier
     // JS assets directory
     //--------------------------------------------------------------------
 
-    public $dirJs = './assets';
+    public $dirJs = './app-assets';
 
     //--------------------------------------------------------------------
     // CSS assets directory
     //--------------------------------------------------------------------
 
-    public $dirCss = './assets';
+    public $dirCss = './app-assets';
 
     //--------------------------------------------------------------------
     // JS minified assets directory
@@ -89,7 +89,7 @@ class Minifier extends \Michalsn\Minifier\Config\Minifier
     // Version assets directory
     //--------------------------------------------------------------------
 
-    public $dirVersion = './assets';
+    public $dirVersion = './app-assets';
 
     //--------------------------------------------------------------------
     // JS tag
@@ -135,12 +135,9 @@ class Minifier extends \Michalsn\Minifier\Config\Minifier
 
     public $js = [
         'all.min.js' => [
-            'vendors/libs/jquery/jquery.js',
-            'vendors/libs/popper/popper.js',
-            'vendors/js/bootstrap.js',
-            'vendors/libs/perfect-scrollbar/perfect-scrollbar.js',
-            'assets/vendor/js/menu.js',
-            'js/main.js'
+            'vendors/js/vendors.min.js',
+            'js/core/app-menu.min.js',
+            'js/core/app.min.js'
         ],
     ];
 
@@ -156,11 +153,12 @@ class Minifier extends \Michalsn\Minifier\Config\Minifier
 
     public $css = [
         'all.min.css' => [
-            'vendors/fonts/boxicons.css',
-            'vendors/css/core.css',
-            'vendors/css/theme-bordered.css',
-            'css/demo.css',
-            'vendors/libs/perfect-scrollbar/perfect-scrollbar.css'
+            'vendors/css/vendors.min.css',
+            'css/bootstrap.min.css',
+            'css/bootstrap-extended.min.css',
+            'css/colors.min.css',
+            'css/components.min.css',
+            'css/core/menu/menu-types/vertical-menu.min.css'
         ],
     ];
 }
