@@ -30,6 +30,9 @@ return [
         'create' => 'Thêm mới',
         'update' => 'Chỉnh sửa',
         'delete' => 'Xóa',
+        'save' => 'Lưu Lại',
+        'search' => 'Tìm kiếm',
+        'reset' => 'Làm mới'
     ],
     'status' => [
         'name' => 'Trạng thái',

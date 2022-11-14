@@ -47,7 +47,14 @@ $routes->group('cms-portal-admin', static function ($routes) {
     // Category
     $routes->group('category', static function ($routes) {
         $routes->get('/', [CategoryController::class, 'index'], ['as' => 'admin.category.index']);
+
+        // Create
         $routes->get('create', [CategoryController::class, 'create'], ['as' => 'admin.category.create']);
+        $routes->post('store', [CategoryController::class, 'store'], ['as' => 'admin.category.store']);
+
+        // Update
+        $routes->get('(:num)/edit', [CategoryController::class, 'edit'], ['as' => 'admin.category.edit']);
+        $routes->post('(:num)/update', [CategoryController::class, 'update'], ['as' => 'admin.category.update']);
     });
 });
 

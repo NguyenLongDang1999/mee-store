@@ -1,6 +1,6 @@
 {extends '../../templates/backend/index.latte'}
 
-{block title}{lang('trans.category.name')} - {lang('trans.act.create')}{/block}
+{block title}{lang('trans.category.name')} - {ifset $row}{$row->name}{else}{lang('trans.act.create')}{/ifset}{/block}
 
 {block pageCSS}
     {link_tag('app-assets/vendors/css/forms/select/select2.min.css')|noescape}
@@ -18,7 +18,11 @@
     </li>
 
     <li class="breadcrumb-item active">
-        {lang('trans.act.create')}
+        {ifset $row}
+            {lang('trans.act.update')}
+        {else}
+            {lang('trans.act.create')}
+        {/ifset}
     </li>
 {/block}
 
@@ -29,30 +33,37 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title text-capitalize">
-                            {lang('trans.act.create')} {lang('trans.category.name')}
+                            {ifset $row}
+                                {lang('trans.act.update')}
+                            {else}
+                                {lang('trans.act.create')}
+                            {/ifset}
+
+                            {lang('trans.category.name')}
                         </h4>
                     </div>
 
                     <div class="card-body">
+                        {form_open_multipart($route ?? '', ['id' => 'category-form'])|noescape}
                         <div class="row">
                             <div class="col-md-12 col-12">
-                                {include ../../components/forms/_text.latte, name => 'name', label => lang('trans.category.title'), value => ''}
+                                {include ../../components/forms/_text.latte, name => 'name', label => lang('trans.category.title'), value => $row->name ?? ''}
                             </div>
 
                             <div class="col-md-6 col-12">
-                                {include ../../components/forms/_text.latte, name => 'description', label => lang('trans.description'), value => ''}
+                                {include ../../components/forms/_text.latte, name => 'description', label => lang('trans.description'), value => $row->description ?? ''}
                             </div>
 
                             <div class="col-md-6 col-12">
-                                {include ../../components/forms/_dropdown.latte, name => 'parent_id', label => lang('trans.category.name'), value => '', option => $getCategoryList ?? [], search => true}
+                                {include ../../components/forms/_dropdown.latte, name => 'parent_id', label => lang('trans.category.name'), value => $row->parent_id ?? '', option => $getCategoryList ?? [], search => true}
                             </div>
 
                             <div class="col-md-6 col-12">
-                                {include ../../components/forms/_dropdown.latte, name => 'status', label => lang('trans.status.name'), value => '', option => optionStatus() ?? [], search => false}
+                                {include ../../components/forms/_dropdown.latte, name => 'status', label => lang('trans.status.name'), value => $row->status ?? '', option => optionStatus() ?? [], search => false}
                             </div>
 
                             <div class="col-md-6 col-12">
-                                {include ../../components/forms/_dropdown.latte, name => 'popular', label => lang('trans.popular.name'), value => '', option => optionPopular() ?? [], search => false}
+                                {include ../../components/forms/_dropdown.latte, name => 'popular', label => lang('trans.popular.name'), value => $row->popular ?? '', option => optionPopular() ?? [], search => false}
                             </div>
 
                             <div class="col-12">
@@ -62,21 +73,22 @@
                             </div>
 
                             <div class="col-12">
-                                {include ../../components/forms/_textarea.latte, name => 'meta_title', label => lang('trans.meta_seo.title'), value => ''}
+                                {include ../../components/forms/_textarea.latte, name => 'meta_title', label => lang('trans.meta_seo.title'), value => $row->meta_title ?? ''}
                             </div>
 
                             <div class="col-12">
-                                {include ../../components/forms/_textarea.latte, name => 'meta_keyword', label => lang('trans.meta_seo.keyword'), value => ''}
+                                {include ../../components/forms/_textarea.latte, name => 'meta_keyword', label => lang('trans.meta_seo.keyword'), value => $row->meta_keyword ?? ''}
                             </div>
 
                             <div class="col-12">
-                                {include ../../components/forms/_textarea.latte, name => 'meta_description', label => lang('trans.meta_seo.description'), value => ''}
+                                {include ../../components/forms/_textarea.latte, name => 'meta_description', label => lang('trans.meta_seo.description'), value => $row->meta_description ?? ''}
                             </div>
 
                             <div class="col-12">
-                                {form_submit('submitButton', 'Lưu Lại', ['class' => 'btn btn-sm btn-primary'])|noescape}
+                                {form_submit('submitButton', lang('trans.act.save'), ['class' => 'btn btn-sm btn-primary text-capitalize'])|noescape}
                             </div>
                         </div>
+                        {form_close()|noescape}
                     </div>
                 </div>
             </div>

@@ -1,34 +1,30 @@
 <div class="col-md-6 col-12">
     <div class="mb-1">
-        {form_label(lang('trans.category.title'), 'search[name]', ['class' => 'form-label text-uppercase'])|noescape}
-        {form_input('search[name]', '', ['class' => 'form-control'])|noescape}
+        {include ../../components/forms/_text.latte, name => 'search[name]', label => lang('trans.category.title'), value => ''}
     </div>
 </div>
 
 <div class="col-md-6 col-12">
     <div class="mb-1">
-        {form_label(lang('trans.category.name'), 'search[parent_id]', ['class' => 'form-label text-uppercase'])|noescape}
-        {form_dropdown('search[parent_id]', $getCategoryList ?? [], '', ['class' => 'form-select select2'])|noescape}
+        {include ../../components/forms/_dropdown.latte, name => 'search[parent_id]', label => lang('trans.category.name'), value => '', option => $getCategoryList ?? [], search => true}
     </div>
 </div>
 
 <div class="col-md-6 col-12">
     <div class="mb-1">
-        {form_label(lang('trans.status.name'), 'search[status]', ['class' => 'form-label text-uppercase'])|noescape}
-        {form_dropdown('search[status]', optionStatus() ?? [], '', ['class' => 'form-select select2 text-capitalize', 'data-minimum-results-for-search' => 'Infinity'])|noescape}
+        {include ../../components/forms/_dropdown.latte, name => 'search[status]', label => lang('trans.status.name'), value => '', option => optionStatus() ?? [], search => false}
     </div>
 </div>
 
 <div class="col-md-6 col-12">
     <div class="mb-1">
-        {form_label(lang('trans.popular.name'), 'search[popular]', ['class' => 'form-label text-uppercase'])|noescape}
-        {form_dropdown('search[popular]', optionPopular() ?? [], '', ['class' => 'form-select select2 text-capitalize', 'data-minimum-results-for-search' => 'Infinity'])|noescape}
+        {include ../../components/forms/_dropdown.latte, name => 'search[popular]', label => lang('trans.popular.name'), value => '', option => optionPopular() ?? [], search => false}
     </div>
 </div>
 
 <div class="col-12 text-center">
     <div class="mb-1">
-        {form_button('search', 'Tìm Kiếm', ['class' => 'btn btn-sm btn-primary', 'id' => 'btnFrmSearch'])|noescape}
+        {form_button('search', lang('trans.act.search'), ['class' => 'btn btn-sm btn-primary text-capitalize', 'id' => 'btnFrmSearch'])|noescape}
         {form_button(['name' => 'reset', 'id' => 'btnReset', 'class' => 'btn btn-sm btn-warning', 'type' => 'reset', 'content' => 'Làm Mới'])|noescape}
     </div>
 </div>

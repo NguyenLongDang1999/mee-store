@@ -113,7 +113,14 @@ defined('POPULAR_INACTIVE') || define('POPULAR_INACTIVE', 0);
 
 /*
  | --------------------------------------------------------------------------
- | IMAGE
+ | PATH
  | --------------------------------------------------------------------------
  */
 defined('PATH_IMAGE_DEFAULT') || define('PATH_IMAGE_DEFAULT', '');
+defined('PATH_CATEGORY_IMAGE') || define('PATH_CATEGORY_IMAGE', 'uploads/category/');
+
+/**
+ * Message
+ */
+defined('MESSAGE_ERROR') || define('MESSAGE_ERROR', 'Có lỗi xảy ra trong quá trình thao tác. Vui lòng kiểm tra lại.');
+defined('MESSAGE_SUCCESS') || define('MESSAGE_SUCCESS', 'Dữ liệu đã được lưu lại thành công.');

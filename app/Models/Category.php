@@ -47,4 +47,27 @@ class Category extends Model
     protected $validationMessages = [];
     protected $skipValidation = false;
     protected $cleanValidationRules = true;
+    protected $beforeInsert = ['convertToSlug'];
+
+    public function getCategoryList($parent_id = 0): array
+    {
+        return $this->select('id, name')->where('parent_id', $parent_id)->findAll();
+    }
+
+    public function getCategoryByID($id): object
+    {
+        return $this->select('id, name, parent_id, description, status, popular,  meta_title, meta_keyword, meta_description, image_uri')
+            ->where('category.id', $id)
+            ->first();
+    }
+
+    protected function convertToSlug(array $data): array
+    {
+        if (!isset($data['data']['name'])) {
+            return $data;
+        }
+
+        $data['data']['slug'] = createSlug($data['data']['name']);
+        return $data;
+    }
 }
