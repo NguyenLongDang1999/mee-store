@@ -36,7 +36,7 @@ abstract class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = ['html', 'minifier'];
+    protected $helpers = ['html', 'core', 'form', 'minifier'];
     protected Latte $latte;
 
     /**

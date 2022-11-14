@@ -94,3 +94,26 @@ define('EVENT_PRIORITY_NORMAL', 100);
  * @deprecated Use \CodeIgniter\Events\Events::PRIORITY_HIGH instead.
  */
 define('EVENT_PRIORITY_HIGH', 10);
+
+/*
+ | --------------------------------------------------------------------------
+ | STATUS
+ | --------------------------------------------------------------------------
+ */
+defined('STATUS_ACTIVE') || define('STATUS_ACTIVE', 1);
+defined('STATUS_INACTIVE') || define('STATUS_INACTIVE', 0);
+
+/*
+ | --------------------------------------------------------------------------
+ | POPULAR
+ | --------------------------------------------------------------------------
+ */
+defined('POPULAR_ACTIVE') || define('POPULAR_ACTIVE', 1);
+defined('POPULAR_INACTIVE') || define('POPULAR_INACTIVE', 0);
+
+/*
+ | --------------------------------------------------------------------------
+ | IMAGE
+ | --------------------------------------------------------------------------
+ */
+defined('PATH_IMAGE_DEFAULT') || define('PATH_IMAGE_DEFAULT', '');

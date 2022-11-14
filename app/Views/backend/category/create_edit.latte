@@ -1,0 +1,85 @@
+{extends '../../templates/backend/index.latte'}
+
+{block title}{lang('trans.category.name')} - {lang('trans.act.create')}{/block}
+
+{block pageCSS}
+    {link_tag('app-assets/vendors/css/forms/select/select2.min.css')|noescape}
+{/block}
+
+{block pageJS}
+    {script_tag('app-assets/vendors/js/forms/select/select2.full.min.js')|noescape}
+{/block}
+
+{block header}
+    <li class="breadcrumb-item">
+        <a href="{route_to('admin.category.index')}">
+            {lang('trans.category.manager')}
+        </a>
+    </li>
+
+    <li class="breadcrumb-item active">
+        {lang('trans.act.create')}
+    </li>
+{/block}
+
+{block content}
+    <section id="basic-input">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title text-capitalize">
+                            {lang('trans.act.create')} {lang('trans.category.name')}
+                        </h4>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-12">
+                                {include ../../components/forms/_text.latte, name => 'name', label => lang('trans.category.title'), value => ''}
+                            </div>
+
+                            <div class="col-md-6 col-12">
+                                {include ../../components/forms/_text.latte, name => 'description', label => lang('trans.description'), value => ''}
+                            </div>
+
+                            <div class="col-md-6 col-12">
+                                {include ../../components/forms/_dropdown.latte, name => 'parent_id', label => lang('trans.category.name'), value => '', option => $getCategoryList ?? [], search => true}
+                            </div>
+
+                            <div class="col-md-6 col-12">
+                                {include ../../components/forms/_dropdown.latte, name => 'status', label => lang('trans.status.name'), value => '', option => optionStatus() ?? [], search => false}
+                            </div>
+
+                            <div class="col-md-6 col-12">
+                                {include ../../components/forms/_dropdown.latte, name => 'popular', label => lang('trans.popular.name'), value => '', option => optionPopular() ?? [], search => false}
+                            </div>
+
+                            <div class="col-12">
+                                <hr />
+                                {include ../../components/forms/_single_file.latte, name => 'image_uri', path => $row->image ?? PATH_IMAGE_DEFAULT}
+                                <hr />
+                            </div>
+
+                            <div class="col-12">
+                                {include ../../components/forms/_textarea.latte, name => 'meta_title', label => lang('trans.meta_seo.title'), value => ''}
+                            </div>
+
+                            <div class="col-12">
+                                {include ../../components/forms/_textarea.latte, name => 'meta_keyword', label => lang('trans.meta_seo.keyword'), value => ''}
+                            </div>
+
+                            <div class="col-12">
+                                {include ../../components/forms/_textarea.latte, name => 'meta_description', label => lang('trans.meta_seo.description'), value => ''}
+                            </div>
+
+                            <div class="col-12">
+                                {form_submit('submitButton', 'Lưu Lại', ['class' => 'btn btn-sm btn-primary'])|noescape}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{/block}

@@ -1,0 +1,19 @@
+<div class="d-flex align-items-start align-items-sm-center gap-4">
+    {img($path, false, ['class' => 'd-block rounded', 'id' => 'uploaded-image', 'width' => '150', 'height' => '150', 'alt' => 'Image'])|noescape}
+
+    <div class="button-wrapper">
+        <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+            <span class="d-none d-sm-block">Chọn Hình</span>
+            <i class="bx bx-upload d-block d-sm-none"></i>
+
+            {form_upload($name, '', ['class' => 'image-file-input', 'id' => 'upload', 'hidden' => 'hidden', 'accept' => 'image/png, image/jpeg'])|noescape}
+        </label>
+
+        <button type="button" class="btn btn-label-secondary image-file-reset mb-4">
+            <i class="bx bx-reset d-block d-sm-none"></i>
+            <span class="d-none d-sm-block">Làm Mới</span>
+        </button>
+
+        <p class="mb-0">Chấp nhận ảnh JPG, GIF or PNG.</p>
+    </div>
+</div>

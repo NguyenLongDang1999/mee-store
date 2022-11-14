@@ -1,0 +1,39 @@
+{extends '../../templates/backend/index.latte'}
+
+{block title}{lang('trans.category.manager')}{/block}
+
+{block pageCSS}
+    {link_tag('app-assets/vendors/css/forms/select/select2.min.css')|noescape}
+{/block}
+
+{block pageJS}
+    {script_tag('app-assets/vendors/js/forms/select/select2.full.min.js')|noescape}
+    {include components/dataTable.latte}
+{/block}
+
+{block header}
+    <li class="breadcrumb-item active">
+        {lang('trans.category.manager')}
+    </li>
+{/block}
+
+{block content}
+    <section id="basic-input">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title text-capitalize">{lang('trans.search')}</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            {include components/search.latte}
+                            {include components/table.latte}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{/block}

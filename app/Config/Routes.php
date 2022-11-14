@@ -3,6 +3,7 @@
 namespace Config;
 
 // Create a new instance of our RouteCollection class.
+use App\Controllers\Backend\CategoryController;
 use App\Controllers\Backend\DashboardController;
 
 $routes = Services::routes();
@@ -37,11 +38,17 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
 
-
-$routes->group('administrator', static function ($routes) {
+// CMS
+$routes->group('cms-portal-admin', static function ($routes) {
+    // Dashboard
     $routes->get('/', [DashboardController::class, 'index'], ['as' => 'admin.dashboard.index']);
+
+    // Category
+    $routes->group('category', static function ($routes) {
+        $routes->get('/', [CategoryController::class, 'index'], ['as' => 'admin.category.index']);
+        $routes->get('create', [CategoryController::class, 'create'], ['as' => 'admin.category.create']);
+    });
 });
 
 /*

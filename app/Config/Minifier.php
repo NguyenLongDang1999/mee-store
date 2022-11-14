@@ -137,7 +137,8 @@ class Minifier extends \Michalsn\Minifier\Config\Minifier
         'all.min.js' => [
             'vendors/js/vendors.min.js',
             'js/core/app-menu.min.js',
-            'js/core/app.min.js'
+            'js/core/app.js',
+//            'core.js'
         ],
     ];
 

@@ -11,8 +11,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
-        {minifier('all.min.css')|noescape}
         {block pageCSS /}
+        {minifier('all.min.css')|noescape}
     </head>
     <!-- END: Head-->
 
@@ -40,7 +40,7 @@
                             </div>
 
                             <span class="avatar">
-                                <img class="round" src="../../../app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40">
+{*                                <img class="round" src="../../../app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40">*}
                                 <span class="avatar-status-online"></span>
                             </span>
                         </a>
@@ -85,15 +85,15 @@
 
             <div class="shadow-bottom"></div>
             <div class="main-menu-content">
-                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                    <li class=" navigation-header">
-                        <span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span>
-                        <i data-feather="more-horizontal"></i>
+                <ul n:inner-foreach="menuListCMS() as $menu" class="navigation navigation-main text-capitalize" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li n:ifset="$menu?->title" class="navigation-header">
+                        <span>{$menu?->title}</span>
                     </li>
-                    <li class=" nav-item">
-                        <a class="d-flex align-items-center" href="app-email.html">
-                            <i data-feather="mail"></i>
-                            <span class="menu-title text-truncate" data-i18n="Email">Email</span>
+
+                    <li n:class="getMenuActive($child?->href) ? active, nav-item" n:foreach="$menu?->content ?? [] as $child">
+                        <a class="d-flex align-items-center" href="{$child?->href}">
+                            <i data-feather="{$child?->icon}"></i>
+                            <span class="menu-title text-truncate">{$child?->title}</span>
                         </a>
                     </li>
                 </ul>
@@ -105,6 +105,7 @@
         <div class="app-content content ">
             <div class="content-overlay"></div>
             <div class="header-navbar-shadow"></div>
+
             <div class="content-wrapper container-xxl p-0">
                 <div class="content-header row">
                     <div class="content-header-left col-md-9 col-12 mb-2">
@@ -113,10 +114,10 @@
                                 <div class="breadcrumb-wrapper">
                                     <ol class="breadcrumb ps-0 text-capitalize">
                                         <li class="breadcrumb-item">
-                                            <a href="{route_to('admin.dashboard.index')}">{lang('trans.dashboard')}</a>
+                                            <a href="{route_to('admin.dashboard.index')}">{lang('trans.home')}</a>
                                         </li>
 
-                                        {block header}
+                                        {block header /}
                                     </ol>
                                 </div>
                             </div>
@@ -143,6 +144,7 @@
 
         {minifier('all.min.js')|noescape}
         {block pageJS /}
+        {script_tag('app-assets/core.js')|noescape}
 
         <script>
             $(window).on('load', function () {
